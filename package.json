@@ -1,5 +1,5 @@
 {
-  "name": "amqp-rpc-server-controller",
+  "name": "rpc-server",
   "version": "1.0.0",
   "description": "An AMQP/RabbitMQ RPC server controller",
   "main": "index.js",

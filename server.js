@@ -64,7 +64,7 @@ module.exports = class RPC_Client {
                 
                 if (msg !== null) {
                     // Handle incoming msg
-                    actionFunction(JSON.parse(msg.content.toString()).msg, (response)=>{
+                    actionFunction(msg.content.toString(), (response)=>{
                         // Send Response Back
                         if (response){
                             
