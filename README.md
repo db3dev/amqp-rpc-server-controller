@@ -23,7 +23,7 @@ function rpcAction(rpcMessage, callback) {
     console.log(rpcMessage);
     
     // Send Response To Requester
-    cb({msg: 'Received'});
+    cb('Received');
 }
 
 // Require Server Module
@@ -54,7 +54,7 @@ function rpcAction(rpcMessage, callback) {
     console.log(rpcMessage);
     
     // Send Response To Requester
-    cb({msg: 'Received'});
+    cb('Received');
 }
 
 // Require server Module
@@ -77,8 +77,4 @@ server.connect().subscribe(
     (channel) => { ... }, // Actions after connection is made
     (err) => { ... } // Handle Error
 )
-```
-
-# 
-```
 ```
