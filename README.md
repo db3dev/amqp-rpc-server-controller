@@ -23,7 +23,7 @@ function rpcAction(rpcMessage, callback) {
     console.log(rpcMessage);
     
     // Send Response To Requester
-    cb('Received');
+    callback('Received');
 }
 
 // Require Server Module
@@ -54,7 +54,7 @@ function rpcAction(rpcMessage, callback) {
     console.log(rpcMessage);
     
     // Send Response To Requester
-    cb('Received');
+    callback('Received');
 }
 
 // Require server Module
