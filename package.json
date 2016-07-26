@@ -11,7 +11,8 @@
   "keywords": [
     "AMQP",
     "RabbitMQ",
-    "Controller"
+    "Controller",
+    "RPC"
   ],
   "author": {
     "name": "Don Burgess",
