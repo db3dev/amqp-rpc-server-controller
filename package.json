@@ -1,5 +1,5 @@
 {
-  "name": "rpc-server",
+  "name": "rabbitmq-rpc-server",
   "version": "1.0.0",
   "description": "An AMQP/RabbitMQ RPC server controller",
   "main": "index.js",
@@ -13,7 +13,12 @@
     "RabbitMQ",
     "Controller"
   ],
-  "author": "Don Burgess",
+  "author": {
+    "name": "Don Burgess",
+    "email": "don@db3dev.com",
+    "github": "https://github.com/db3dev",
+    "url": "db3dev.com"
+  },
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/db3dev/amqp-rpc-server-controller/issues"
