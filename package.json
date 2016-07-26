@@ -26,6 +26,7 @@
   },
   "homepage": "https://github.com/db3dev/amqp-rpc-server-controller#readme",
   "dependencies": {
+    "amqplib": "^0.4.2",
     "rx": "^4.1.0"
   }
 }
