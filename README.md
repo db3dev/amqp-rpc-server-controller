@@ -43,7 +43,7 @@ var config = RPC.Config({
 var server = RPC.server(config);
 
 // Attempt to connect to server
-server.connect();
+server.connect(rpcAction);
 ```
 
 # Connecting With a Subscription
@@ -70,10 +70,10 @@ var config = RPC.Config({
 });
 
 // Start server
-var server = RPC.server(config, rpcAction);
+var server = RPC.server(config);
 
 // Attempt to connect to server
-server.connect().subscribe(
+server.connect(rpcAction).subscribe(
     (channel) => { ... }, // Actions after connection is made
     (err) => { ... } // Handle Error
 )

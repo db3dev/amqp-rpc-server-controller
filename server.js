@@ -12,7 +12,8 @@ module.exports = class RPC_Client {
      * Takes a config object and creates objects that a connection and channel will be stored in
      */
     constructor(configuration){
-        this.uri = configuration.getUri();
+        this.config = configuration
+        this.uri = this.config ? this.config.getUri() : null;
         this.connection = null;
         this.channel = null;
     }
@@ -21,12 +22,12 @@ module.exports = class RPC_Client {
         this.uri = configuration.getUri();
     }
 
-    connect(config, actionFunction, verboseOn) {
+    connect(actionFunction, verboseOn) {
         if(this.uri === 0) {
             return Rx.Observable.throw(new Error('Uri must be defined in order to start connection'));
         }
 
-        if (!config) {
+        if (!this.config) {
             return Rx.Observable.throw(new Error('No configuration was provided and is required. \n .connect(configuration, actionFunction)'))
         }
         
@@ -50,14 +51,14 @@ module.exports = class RPC_Client {
             _self.channel = channel;
 
             // Assert Queue
-            _self.channel.assertQueue(config.queueName, {durable: false});
+            _self.channel.assertQueue(this.config.queueName, {durable: false});
             _self.channel.prefetch(1);
             if (verboseOn) {
-                console.log('Awaiting RPC Requests On: ', config.queueName);
+                console.log('Awaiting RPC Requests On: ', this.config.queueName);
             }
 
             // Consume on queue
-            _self.channel.consume(config.queueName, (msg)=>{
+            _self.channel.consume(this.config.queueName, (msg)=>{
                 if (verboseOn) {
                     console.log("RECEIVED FROM BROKER: ", msg.content.toString());
                 }                
