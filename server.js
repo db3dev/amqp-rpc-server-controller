@@ -23,11 +23,14 @@ module.exports = class RPC_Client {
     }
 
     connect(actionFunction, verboseOn) {
+        // Respond with an error if not enough parameters provided
         if(!this.uri || !this.config || !actionFunction) {
             let err = "Could not connect: "
-            err = !this.uri ? err + '/nUri must be defined in order to start connection' : err;
+            err = !this.uri ? err + '/nUri must be defined in order to start connection.' : err;
             err = !this.config ? err + '/nNo configuration was provided and is required.' : err;
             err = !actionFunction ? err + 'No action was provided and is required.' : err;
+
+            err = new Error(err);
 
             return new Promise((res, rej) => {
                 rej(err)

@@ -64,7 +64,7 @@ module.exports = class Config {
             this.port
         }
         else {
-            return 0;
+            return null;
         }
     }
 }
