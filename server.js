@@ -1,5 +1,4 @@
 'use strict';
-const Rx = require('rx');
 const EventEmitter = require('events');
 
 /**

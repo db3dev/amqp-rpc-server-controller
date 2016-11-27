@@ -15,7 +15,7 @@ Message is what is being sent to the server and callback should be called with a
 
 Responses will be turned into an Object and have the response assigned to Object.msg which is then sent out as a buffer.
 
-# Connecting Without Subscriptions
+# Connecting To Server
 ```
 // Call when RPC is received
 function rpcAction(rpcMessage, callback) {
@@ -43,38 +43,12 @@ var config = RPC.Config({
 var server = RPC.server(config);
 
 // Attempt to connect to server
-server.connect(rpcAction);
-```
-
-# Connecting With a Subscription
-```
-// Call when RPC is received
-function rpcAction(rpcMessage, callback) {
-    // Arbitrary Action to take with Requester's Message
-    console.log(rpcMessage);
-    
-    // Send Response To Requester
-    callback('Received');
-}
-
-// Require server Module
-var RPC = require('rpc-server');
-
-// Configure server to Connect to RabbitMQ Server
-var config = RPC.Config({
-    username: 'user',
-    password: 'password',
-    host: 'example.com',
-    vhost: 'vhost',
-    queueName: 'rpc_api'
-});
-
-// Start server
-var server = RPC.server(config);
-
-// Attempt to connect to server
-server.connect(rpcAction).subscribe(
-    (channel) => { ... }, // Actions after connection is made
-    (err) => { ... } // Handle Error
-)
+server.connect(rpcAction); // returns a promise
+    .then((rabbitmq_channel) => {
+        ... // Post connection actions.
+    })
+    .catch((err) => {
+        // Handle errors
+        console.log(err)
+    });
 ```
