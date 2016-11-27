@@ -23,22 +23,21 @@ module.exports = class RPC_Client {
     }
 
     connect(actionFunction, verboseOn) {
-        if(this.uri === 0) {
-            return Rx.Observable.throw(new Error('Uri must be defined in order to start connection'));
-        }
+        if(!this.uri || !this.config || !actionFunction) {
+            let err = "Could not connect: "
+            err = !this.uri ? err + '/nUri must be defined in order to start connection' : err;
+            err = !this.config ? err + '/nNo configuration was provided and is required.' : err;
+            err = !actionFunction ? err + 'No action was provided and is required.' : err;
 
-        if (!this.config) {
-            return Rx.Observable.throw(new Error('No configuration was provided and is required. \n .connect(configuration, actionFunction)'))
-        }
-        
-        if (!actionFunction) {
-            return Rx.Observable.throw(new Error('No action was provided and is required. \n .connect(configuration, actionFunction)'))
+            return new Promise((res, rej) => {
+                rej(err)
+            });
         }
         
         const _self = this;
 
         // Create Connection
-        const connPromise = require('amqplib').connect(this.uri)
+        return require('amqplib').connect(this.uri)
         
         // Create Channel
         .then((connection) => {
@@ -94,9 +93,7 @@ module.exports = class RPC_Client {
 
                 return _self.channel;
             });
-        })
-
-        return Rx.Observable.fromPromise(connPromise);
+        });
     }
 
     getConnection() {
