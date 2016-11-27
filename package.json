@@ -1,6 +1,6 @@
 {
-  "name": "rabbitmq-rpc-server",
-  "version": "1.0.3",
+  "name": "@db3dev/rabbitmq-rpc-server",
+  "version": "1.0.0",
   "description": "An AMQP/RabbitMQ RPC server controller",
   "main": "index.js",
   "scripts": {},
