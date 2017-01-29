@@ -13,7 +13,7 @@ Your action function requires two parameters to be successful:
 
 Message is what is being sent to the server and callback should be called with a return message for the requester.
 
-Responses will be turned into an Object and have the response assigned to Object.msg which is then sent out as a buffer.
+Responses are expected to be an Object and is then sent out as a buffer.
 
 # Connecting To Server
 ```
@@ -23,15 +23,15 @@ function rpcAction(rpcMessage, callback) {
     console.log(rpcMessage);
     
     // Send Response To Requester
-    callback('Received');
+    callback({ resp: 'Success!' });
 }
 
 // Require Server Module
-var RPC = require('rpc-server');
+var Config = require('@db3dev/rabbitmq-rpc-server').Config,
+    Server = require('@db3dev/rabbitmq-rpc-server').Server;
 
 // Configure Server to Connect to RabbitMQ Server
-
-var config = RPC.Config({
+var config = new Config({
     username: 'user',
     password: 'password',
     host: 'example.com',
@@ -39,8 +39,8 @@ var config = RPC.Config({
     queueName: 'rpc_api'
 });
 
-// Start Server
-var server = RPC.server(config);
+// Instantiate Server
+var server = new Server(config);
 
 // Attempt to connect to server
 server.connect(rpcAction); // returns a promise

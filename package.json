@@ -1,12 +1,17 @@
 {
   "name": "@db3dev/rabbitmq-rpc-server",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "An AMQP/RabbitMQ RPC server controller",
-  "main": "index.js",
-  "scripts": {},
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/db3dev/amqp-rpc-server-controller.git"
+  },
+  "scripts": {
+    "build": "gulp && npm test",
+    "test": "gulp test",
+    "example": "node ./example/start-example.js"
   },
   "keywords": [
     "AMQP",
@@ -27,5 +32,21 @@
   "homepage": "https://github.com/db3dev/amqp-rpc-server-controller#readme",
   "dependencies": {
     "amqplib": "^0.4.2"
+  },
+  "devDependencies": {
+    "@types/amqplib": "^0.5.1",
+    "@types/es6-promise": "0.0.32",
+    "@types/jasmine": "^2.5.41",
+    "@types/node": "^7.0.1",
+    "bluebird": "^3.4.7",
+    "del": "^2.2.2",
+    "gulp": "^3.9.1",
+    "gulp-jasmine": "^2.4.2",
+    "gulp-tslint": "^7.0.1",
+    "gulp-typescript": "^3.1.4",
+    "jasmine": "^2.5.3",
+    "merge2": "^1.0.3",
+    "tslint": "^4.4.2",
+    "typescript": "^2.0.0"
   }
 }
