@@ -1,6 +1,6 @@
 {
   "name": "@db3dev/rabbitmq-rpc-server",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "An AMQP/RabbitMQ RPC server controller",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -35,7 +35,6 @@
   },
   "devDependencies": {
     "@types/amqplib": "^0.5.1",
-    "@types/es6-promise": "0.0.32",
     "@types/jasmine": "^2.5.41",
     "@types/node": "^7.0.1",
     "bluebird": "^3.4.7",
